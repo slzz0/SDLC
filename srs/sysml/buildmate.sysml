@@ -1,5 +1,5 @@
 package BuildMateRequirements {
-    doc /* Требования к веб-приложению BuildMate (подбор конфигурации ПК). Версия 0.1. */
+    doc /* Требования к веб-приложению BuildMate (подбор конфигурации ПК). Версия 0.2 (после рецензирования). */
 
     import ScalarValues::*;
 
@@ -80,6 +80,14 @@ package BuildMateRequirements {
             requirement <'REQ-FUNC-011'> func011 : FunctionalRequirement {
                 doc /* Замена комплектующей. */
                 attribute :>> priority = "Should";
+            }
+            requirement <'REQ-FUNC-019'> func019 : FunctionalRequirement {
+                doc /* Имеющиеся комплектующие. */
+                attribute :>> priority = "Should";
+            }
+            requirement <'REQ-FUNC-020'> func020 : FunctionalRequirement {
+                doc /* Переключение валюты. */
+                attribute :>> priority = "Could";
             }
         }
 

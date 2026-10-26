@@ -1,30 +1,42 @@
 
-package BuildMateQuality {
+package BuildMateUseCases {
     private import BuildMateDomain::*;
 
-    requirement <'REQ-PERF-002'> selectionLatency : QualityRequirement {
-        doc /* Формирование трёх вариантов не более 5 с (95 % запросов). */
-        attribute :>> metric = "p95 <= 5 s";
+    use case def SelectConfiguration {
+        subject system : BuildMate;
+        actor user : Visitor;
+
+        objective {
+            doc /* Получить совместимые варианты конфигурации по бюджету и требованиям. */
+        }
     }
 
-    requirement <'REQ-REL-002'> savedImmutability : QualityRequirement {
-        doc /* Сохранённая конфигурация не меняется при изменении каталога. */
-        attribute :>> metric = "0 изменений";
+    use case def CheckAssembly {
+        subject system : BuildMate;
+        actor user : Visitor;
+
+        objective {
+            doc /* Проверить совместимость собственной сборки. */
+        }
     }
 
-    requirement <'REQ-MAINT-001'> compatibilityCoverage : QualityRequirement {
-        doc /* Покрытие модульными тестами модуля совместимости и подбора не менее 90 %. */
-        attribute :>> metric = "coverage >= 90 %";
+    use case def MaintainCatalog {
+        subject system : BuildMate;
+        actor admin : Administrator;
+
+        objective {
+            doc /* Вести каталог, прайс-листы и профили назначения. */
+        }
     }
 
-    // Распределение требований к качеству
-    satisfy BuildMateQuality::selectionLatency
-        by BuildMateDomain::buildMate.selectionModule;
+    use case def TrackPrice {
+        subject system : BuildMate;
+        actor user : Visitor;
+        actor mail : MailServer;
 
-    satisfy BuildMateQuality::savedImmutability
-        by BuildMateDomain::buildMate.accountModule;
-
-    satisfy BuildMateQuality::compatibilityCoverage
-        by BuildMateDomain::buildMate.compatibilityModule;
+        objective {
+            doc /* Получить письмо при изменении цены сохранённой конфигурации. */
+        }
+    }
 }
 

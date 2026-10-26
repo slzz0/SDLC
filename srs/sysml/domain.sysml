@@ -2,12 +2,12 @@
 package BuildMateDomain {
     import ScalarValues::*;
 
-    // Участники системы
+    // Участники
     part def Visitor;
     part def Administrator;
     part def MailServer;
 
-    // Система и её модули
+    // Структура системы
     part def BuildMate {
         part catalogModule;
         part selectionModule;

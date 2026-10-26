@@ -2,6 +2,7 @@
 package BuildMateQuality {
     private import BuildMateDomain::*;
 
+    // Требования к качеству
     requirement <'REQ-PERF-002'> selectionLatency : QualityRequirement {
         doc /* Формирование трёх вариантов не более 5 с (95 % запросов). */
         attribute :>> metric = "p95 <= 5 s";
@@ -17,7 +18,7 @@ package BuildMateQuality {
         attribute :>> metric = "coverage >= 90 %";
     }
 
-    // Распределение требований к качеству
+    // Распределение требований к качеству по модулям
     satisfy BuildMateQuality::selectionLatency
         by BuildMateDomain::buildMate.selectionModule;
 

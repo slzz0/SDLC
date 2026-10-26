@@ -56,6 +56,14 @@ package BuildMateFunctional {
                 doc /* Замена комплектующей. */
                 attribute :>> priority = "Should";
             }
+            requirement <'REQ-FUNC-019'> func019 : FunctionalRequirement {
+                doc /* Имеющиеся комплектующие. */
+                attribute :>> priority = "Should";
+            }
+            requirement <'REQ-FUNC-020'> func020 : FunctionalRequirement {
+                doc /* Переключение валюты. */
+                attribute :>> priority = "Could";
+            }
         }
 
         requirement compatibilityGroup {
@@ -93,7 +101,7 @@ package BuildMateFunctional {
         }
     }
 
-    // Распределение требований по модулям системы
+    // Распределение функциональных требований по модулям
     satisfy BuildMateFunctional::buildMateSpec::catalogGroup::func003
         by BuildMateDomain::buildMate.catalogModule;
 

@@ -31,6 +31,10 @@ digraph G {
   g3 -> r10;
   r11 [label=<<b>REQ-FUNC-011</b> · Замена комплектующей>];
   g3 -> r11;
+  r19 [label=<<b>REQ-FUNC-019</b> · Имеющиеся комплектующие>, fillcolor="#fef3c7"];
+  g3 -> r19;
+  r20 [label=<<b>REQ-FUNC-020</b> · Переключение валюты>, fillcolor="#fef3c7"];
+  g3 -> r20;
   g4 [label=<<font point-size="11">«requirement»</font><br/><b>Совместимость и проверка</b>>, fillcolor="#e2e8f0"];
   root -> g4;
   r6 [label=<<b>REQ-FUNC-006</b> · Правила совместимости>];
