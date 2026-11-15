@@ -1,0 +1,13 @@
+digraph G {
+  rankdir=TB; nodesep=0.3; ranksep=0.7;
+  node [shape=plain, fontname="Helvetica", fontsize=14];
+  edge [color="#334155", fontname="Helvetica", fontsize=12, arrowhead=none, labeldistance=1.6];
+  User [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" color="#334155"><tr><td bgcolor="#e2e8f0"><b>User</b></td></tr><hr/><tr><td align="left">id, email, passwordHash, role<br align="left"/></td></tr></table>>];
+  SavedConfiguration [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" color="#334155"><tr><td bgcolor="#e2e8f0"><b>SavedConfiguration</b></td></tr><hr/><tr><td align="left">id, name, purpose, budget, total,<br align="left"/>createdAt<br align="left"/></td></tr></table>>];
+  ConfigurationItem [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" color="#334155"><tr><td bgcolor="#e2e8f0"><b>ConfigurationItem</b></td></tr><hr/><tr><td align="left">id, category, priceAtSave, nameAtSave<br align="left"/></td></tr></table>>];
+  Component [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" color="#334155"><tr><td bgcolor="#e2e8f0"><b>Component</b></td></tr><hr/><tr><td align="left">id, category, manufacturer, name, sku, price,<br align="left"/>inStock, priceDate, shopUrl, performanceIndex,<br align="left"/>archived, specs<br align="left"/></td></tr></table>>];
+  Profile [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" color="#334155"><tr><td bgcolor="#e2e8f0"><b>Profile</b></td></tr><hr/><tr><td align="left">id, purpose, budgetShares, cpuWeight,<br align="left"/>gpuWeight, ratioMin, ratioMax<br align="left"/></td></tr></table>>];
+  User -> SavedConfiguration [taillabel="1", headlabel="0..*"];
+  SavedConfiguration -> ConfigurationItem [taillabel="1", headlabel="1..*"];
+  Component -> ConfigurationItem [taillabel="1", headlabel="0..*"];
+}
