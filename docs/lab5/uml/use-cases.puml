@@ -1,0 +1,34 @@
+@startuml use-cases
+!include _style.iuml
+skinparam linetype polyline
+left to right direction
+actor "**Посетитель**\n<size:14>Подбирает и проверяет ПК</size>" as Visitor
+actor "**Пользователь**\n<size:14>Сохраняет и сравнивает сборки</size>" as User
+actor "**Администратор**\n<size:14>Ведёт каталог и профили</size>" as Admin
+actor "**Почтовый сервер**\n<size:14>Принимает письма об изменении цены</size>" as Mail
+User --|> Visitor
+Admin --|> User
+rectangle "BuildMate" {
+  usecase "UC-03\nПодобрать конфигурацию\n<size:14>До трёх сборок в пределах бюджета</size>" as Select
+  usecase "UC-04\nЗаменить комплектующую\n<size:14>Совместимые замены с пересчётом цены</size>" as Replace
+  usecase "UC-05\nПроверить свою сборку\n<size:14>Результаты проверки выбранных деталей</size>" as Manual
+  usecase "UC-08\nПроверить совместимость\n<size:14>Общие правила и расчёт мощности БП</size>" as Check
+  usecase "UC-09\nПросмотреть каталог\n<size:14>Поиск деталей, характеристик и цен</size>" as Browse
+  usecase "UC-01\nУправлять доступом\nк учётной записи\n<size:14>Вход, регистрация и выход</size>" as Access
+  usecase "UC-06\nРаботать с сохранёнными\nконфигурациями\n<size:14>Снимки сборок и сравнение вариантов</size>" as Saved
+  usecase "UC-07\nОтслеживать цену\n<size:14>Письмо при изменении суммы на 5 % и более</size>" as Track
+  usecase "UC-02\nВести каталог и профили\n<size:14>Цены, характеристики и профили назначения</size>" as Edit
+}
+Visitor --> Browse
+Visitor --> Select
+Visitor --> Replace
+Visitor --> Manual
+Select ..> Check : <<include>>
+Replace ..> Check : <<include>>
+Manual ..> Check : <<include>>
+Visitor --> Access
+User --> Saved
+User --> Track
+Admin --> Edit
+Track -- Mail
+@enduml

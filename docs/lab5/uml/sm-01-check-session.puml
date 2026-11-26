@@ -1,0 +1,16 @@
+@startuml sm-01-check-session
+!include _style.iuml
+skinparam linetype polyline
+mainframe **state machine** SM-01 Сеанс проверки сборки
+hide empty description
+state "Редактирование" as Editing
+state "Идёт проверка" as Checking
+state "Результат актуален" as Result
+[*] --> Editing
+Editing --> Checking : проверить [выбраны позиции]
+Checking --> Editing : позиция недоступна /\nуказать позицию
+Checking --> Result : проверка завершена /\nпоказать результат
+Result --> Editing : изменить состав /\nсбросить результат
+Editing --> [*] : закрыть форму
+Result --> [*] : закрыть форму
+@enduml

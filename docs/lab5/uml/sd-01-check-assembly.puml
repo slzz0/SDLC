@@ -1,0 +1,32 @@
+@startuml sd-01-check-assembly
+!include _style.iuml
+mainframe **sd** SD-01 Проверка своей сборки (UC-05)
+hide footbox
+actor "Посетитель" as Visitor
+boundary "Форма\nпроверки" as UI
+participant "Сервис\nпроверки" as Service
+participant "Каталог" as Catalog
+participant "Правила\nсовместимости" as Rules
+
+Visitor -> UI : Запустить проверку
+activate UI
+UI -> Service : проверить(артикулы)
+activate Service
+Service -> Catalog : найти(артикулы)
+activate Catalog
+Catalog -->> Service : найденные позиции\nи их характеристики
+deactivate Catalog
+
+alt все артикулы найдены
+  Service -> Rules : оценить(состав)
+  activate Rules
+  Rules -->> Service : результаты правил и расчёт мощности,\nесли известны исходные данные
+  deactivate Rules
+  Service -->> UI : результаты для выбранного состава
+else else
+  Service -->> UI : артикулы для замены
+end
+deactivate Service
+UI -->> Visitor : Результаты проверки\nили предложение заменить позиции
+deactivate UI
+@enduml
